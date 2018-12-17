@@ -1,0 +1,79 @@
+<nav class="navbar navbar-inverse" >
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Foodie</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#!/home">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Order Online</a></li>
+          </ul>
+          <!-- <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          </ul> -->
+          <ul class="nav navbar-nav navbar-right">
+            <!-- <li class="active"><a href="#!/home">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Order Online</a></li> -->
+            <li><a href="#!/">Logout</a></li>
+         </ul>
+        </div>
+      </nav>
+
+
+
+<div class="main " ng-controller="mainController">
+<div class="bg">
+<p>Find the Best Restaurants in town</p>
+</div>
+
+ <div class="search-bar">
+    <form>
+    <div class="input-wrapper">
+      <input type="text" class="form-control" placeholder="Search..." ng-model="query">
+    </div>
+    <button type="submit" class="btn btn-default">Search</button>
+  </form>
+</div>
+
+<div ng-repeat="restaurant in restaurants | filter:query | orderBy:'-cost'"  class="restaurant">
+    <div class="rest-wrapper">
+        <div class="image">
+            <img src="{{restaurant.image}}" height="100" width="100">
+        </div>
+         <div class="rest-info">
+            <div class="rest-category">
+               <small>{{restaurant.category}} </small>
+            </div>
+              <div class="rest-name">
+          <a ng-href="#!/restaurant/{{restaurant.id}}"><strong>{{restaurant.name}}</strong></a>
+      </div>
+
+            <div>
+               <strong> {{restaurant.location}}</strong>
+            </div>
+
+            <div class="rest-address">
+                {{restaurant.address}}
+            </div>
+        </div>
+    </div>
+
+    <div class="rest-extra">
+        <div class="type">
+            <div><small>Cuisines:</small></div>
+            <div><small>Cost for Two: </small></div>
+            <div><small>Hours:</small></div>
+        </div>
+        <div class="value">
+            <div>{{restaurant.cuisines}}</div>
+            <div>₹{{restaurant.cost |number}}</div>
+            <div>{{restaurant.hours}}</div>
+        </div>
+    </div>
+    <div class="rating">
+        <strong>{{restaurant.ratings}}</strong>
+    </div>
+</div>
+</div>
